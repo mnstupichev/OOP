@@ -33,7 +33,6 @@ public class WalletService: IWalletService
     public decimal CancelAndReturnInserted()
     {
         var toReturn = _insertedRub;
-        // Remove inserted coins from float using greedy on available coins
         var change = MakeChange((int)toReturn, simulate: false, out var success);
         _insertedRub = 0;
         return toReturn;
@@ -49,7 +48,6 @@ public class WalletService: IWalletService
             error = "Невозможно выдать сдачу при отмене. Обратитесь к администратору.";
             return false;
         }
-        // apply change and reset
         foreach (var kvp in coins)
         {
             _float[kvp.Key] = _float.GetValueOrDefault(kvp.Key) - kvp.Value;

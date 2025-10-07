@@ -60,6 +60,11 @@ public class VendingMachineService: IVendingMachineService
     }
 
     public decimal CancelAndReturn() => _wallet.CancelAndReturnInserted();
+
+    public bool TryCancelAndReturn(out decimal amount, out string? error)
+    {
+        return _wallet.TryCancelAndReturn(out amount, out error);
+    }
 }
 
 

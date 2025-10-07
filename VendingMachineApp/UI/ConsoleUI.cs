@@ -113,8 +113,14 @@ public class ConsoleUI: IConsoleUI
 
     private void CancelAndReturn()
     {
-        var amount = _vendingmachine.CancelAndReturn();
-        Console.WriteLine($"Возвращено: {amount:0.##} руб.");
+        if (_vendingmachine.TryCancelAndReturn(out var amount, out var error))
+        {
+            Console.WriteLine($"Возвращено: {amount:0.##} руб.");
+        }
+        else
+        {
+            Console.WriteLine(error);
+        }
     }
 
     private void AdminFlow()

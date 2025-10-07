@@ -17,6 +17,7 @@ public interface IWalletService
     void InsertCoin(CoinDenomination denomination);
     decimal GetInsertedRub();
     decimal CancelAndReturnInserted();
+    bool TryCancelAndReturn(out decimal amount, out string? error);
     bool TryMakePayment(decimal priceRub, out decimal changeRub, out Dictionary<CoinDenomination, int> changeCoins);
     decimal CollectTakings();
 }
@@ -27,6 +28,7 @@ public interface IVendingMachineService
     void InsertCoin(CoinDenomination denomination);
     bool TryPurchase(string productName, out Product? product, out Dictionary<CoinDenomination, int> changeCoins, out string? error);
     decimal CancelAndReturn();
+    bool TryCancelAndReturn(out decimal amount, out string? error);
 }
 
 public interface IConsoleUI
